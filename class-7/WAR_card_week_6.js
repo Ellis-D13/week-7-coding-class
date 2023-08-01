@@ -51,10 +51,18 @@ class Deck {
 
     // DEAL METHOD: removes and returns the top card of the deck
     deal() {
+        //this.cards.length checks the current number of cards in the deck
+        // ? creates an if-else statement: condition ? expression1 : expression2 if condition is true it evaluates
+        // .. expression1; otherwise expression2 is evaluated
+        //this.cards.pop(): if this.cards.length is true this line removes and returns the last card from the 'cards' array
+        //pop() modifies the array in place and retuns the removed element
+        //null - if the deck is empty this.cards.length is empty it returns null, indicating there are no more cards to deal
         return this.cards.length ? this.cards.pop() : null; 
     }
 }
-
+        // it is essential to make sure that the 'cards' array is working with cards prior to calling the deal() function
+        //... or it may return 'null' where there are cards available to deal 
+        
 // Player Class: a player, properties for storing the cards, and keeping score and methods for playing a card
 class Player {
     constructor(name) {
