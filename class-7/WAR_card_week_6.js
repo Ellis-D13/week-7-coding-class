@@ -52,7 +52,7 @@ class Deck {
     // DEAL METHOD: removes and returns the top card of the deck
     deal() {
         //this.cards.length checks the current number of cards in the deck
-        // ? creates an if-else statement: condition ? expression1 : expression2 if condition is true it evaluates
+        // ? creates an if-else statement: 'condition ? expression1 : expression2' if condition is true it evaluates
         // .. expression1; otherwise expression2 is evaluated
         //this.cards.pop(): if this.cards.length is true this line removes and returns the last card from the 'cards' array
         //pop() modifies the array in place and retuns the removed element
@@ -72,6 +72,9 @@ class Player {
     }
     // PlayCard method: removes and returns the top card from players hand 
     playCard() {
+        // else-if statement 
+        // 'playCard' checks the cards array and plays a card if there are cards availible
+        //the 'shift()' method modifies the array in place by removing the first element
         return this.cards.length ? this.cards.shift() : null; 
     }
 }
@@ -87,28 +90,38 @@ class Game{
 
     //DealCards method: deals 26 cards to each player
     dealCards() {
+        //while loop that runs as long as there are cards in the 'this.deck.cards' array
         while(this.deck.cards.length) {
+            //'this.players' is an array of player objects
+            //'this.players[0] is the first player in the array and the index [1] is the second player in the array 
             this.players[0].cards.push(this.deck.deal());
             this.players[1].cards.push(this.deck.deal());
-            
+            //this.players[0].cards.push(this.deck.deal()); deals a card from the deck to the first player by calling the deal() function
+            // of the this.deck object then removes and returns the top card from the deck and is pushed into the 'cards' array addiing it to the hand
+            // the loop will iterate until there are no cards remaining or asl long as this.deck.cards.length remains truthy 
         }
         }    
-    playTurn() {
+    playTurn() { //playTurn() is a function
+        // assuming the function works correctly this.players[0].playCard(); returns the top card from the players hand 
         let card1 = this.players[0].playCard(); // player 1 plays a card
         let card2 = this.players[1].playCard(); // player 2 plays a card
 
         // if both players have a card to play
-        if(card1 && card2) {
+        if(card1 && card2) { // this 'if' statement checks to see if both players have a card to play
             // log the cards that are played
             console.log(`${this.players[0].name} plays ${card1.rank} of ${card1.suit}`);
+            // if both players have a card to play this line logs a message to the console indicating the card played by the first player
+            // ... it uses string interpolation to include the players name, card rank and suit 
             console.log(`${this.players[1].name} plays ${card2.rank} of ${card2.suit}`);
 
             // Determine the order of ranks
       const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
       // Compare the ranks of the two cards
       // If Player 1's card is of a higher rank, they win the round
+      // the if statement comapres the ranks of the two cards played
       if(ranks.indexOf(card1.rank) > ranks.indexOf(card2.rank)) {
-        this.players[0].score++;
+        //'ranks.indexOf(card1.rank) retrieves the index of 'card1.rank' in the 'ranks' array, using the greater than operator it compares card1 and card2
+        this.players[0].score++; // using the if and else if statements the code adds a point to player1's score, the (++) operand adds one
         console.log(`${this.players[0].name} wins the round\n`);
       } 
       // If Player 2's card is of a higher rank, they win the round
