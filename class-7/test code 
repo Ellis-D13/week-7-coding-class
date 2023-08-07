@@ -1,0 +1,33 @@
+// Import the 'chai' package which is a testing utility library for JavaScript.
+const chai = require('chai');
+// From 'chai', import the 'expect' assertion style which provides a flexible and readable language to write assertions.
+const expect = chai.expect;
+
+// Import the classes (Card and Player) that you defined in your game code.
+const Card = require('./card');
+const Player = require('./player');
+
+// 'describe' is a Mocha function that's used to group related tests. The first argument is a string representing the group name.
+// The second argument is a callback function where we define individual tests.
+describe('Player', function() {
+
+  // 'it' is another Mocha function that defines a single test. The first argument is a string explaining what the test should do.
+  // The second argument is a callback function that contains the actual test.
+  it('should play a card from hand', function() {
+
+    // We create a new Player object named 'Test Player' and push a new Card object to the player's 'cards' array.
+    let player = new Player('Test Player');
+    player.cards.push(new Card('hearts', 'A'));
+
+    // We now have our setup, and we can write our assertions. We're using Chai's 'expect' style for these.
+    // Here, we're saying "we expect the length of the player's cards array to be 1". 
+    expect(player.cards.length).to.equal(1);
+
+    // Now, we simulate the player playing a card by calling the 'playCard' method of the Player class.
+    player.playCard();
+
+    // And finally, we write another assertion that states "after playing a card, we expect the length of the player's cards array to be 0".
+    // If the 'playCard' function works correctly, this should always be the case.
+    expect(player.cards.length).to.equal(0);
+  });
+});
