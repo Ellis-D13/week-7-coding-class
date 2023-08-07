@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card Game</title>
+    <link rel="stylesheet" href="./node_modules/mocha/mocha.css">
 </head>
 <body>
-    <script src="main.js"></script>
+    <div id="mocha"></div>
+    <div id="messages"></div>
+    <div id="fixtures"></div>
+    <script src="node_modules/chai/chai.js"></script> <!-- link chai.js-->
+    <script src="node_modules/mocha/mocha.js"></script> <!-- link mocha.js-->
+    <script src="WAR_card_week_6.js"></script> <!-- link index.js-->
+    <script>mocha.setup;{'bdd'}</script> <!-- set up the test?-->
+    <script>mocha.run();</script> <!-- run the test?-->
 </body>
 </html>
